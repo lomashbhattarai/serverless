@@ -73,6 +73,12 @@ functions:
       - http:
           path: brokers
           method: get
+  todaysPrice:
+    handler: handler.todaysPrice
+    events:
+      - http:
+          path: todaysPrice
+          method: get
 #      - websocket: $connect
 #      - s3: ${env:BUCKET}
 #      - schedule: rate(10 minutes)
