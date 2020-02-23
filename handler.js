@@ -44,6 +44,9 @@ module.exports.brokers =  (event, context, callback) => {
         await Promise.all(promises)
         const response =  {
           statusCode: 200,
+          headers:{
+            "Access-Control-Allow-Origin": "*" 
+          },
           body: JSON.stringify(
             {
               brokers: brokerList,

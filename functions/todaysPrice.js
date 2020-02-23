@@ -33,8 +33,25 @@ const todaysPrice = (event, context, callback) => {
                             Amount,
                             prevClosing,
                             difference
-                        ] = details  
-                        CompaniesWithTradingData.push({ 
+                        ] = details
+                        
+                        sn = +sn
+                        noOfTransactions = +noOfTransactions
+                        maxPrice = +maxPrice
+                        minPrice = +minPrice
+                        closingPrice = +closingPrice
+                        tradedShares= +tradedShares
+                        Amount = +Amount
+                        prevClosing = +prevClosing,
+                        difference = +difference
+
+                        let isValidEntry = sn && noOfTransactions && maxPrice
+                        && minPrice && closingPrice && tradedShares
+                        && Amount && 
+                        prevClosing
+                        && difference 
+                        if(isValidEntry){
+                          CompaniesWithTradingData.push({ 
                             sn,
                             name,
                             noOfTransactions,
@@ -44,7 +61,8 @@ const todaysPrice = (event, context, callback) => {
                             tradedShares,
                             Amount,
                             prevClosing,
-                            difference });
+                            difference });    
+                        }
                       })
                       resolve(html)
                   } else {
@@ -56,9 +74,12 @@ const todaysPrice = (event, context, callback) => {
           await Promise.all(promises)
           const response =  {
             statusCode: 200,
+            headers:{
+              "Access-Control-Allow-Origin": "*" 
+            },
             body: JSON.stringify(
               {
-                brokers: CompaniesWithTradingData.slice(2,CompaniesWithTradingData.length-4),
+                prices: CompaniesWithTradingData.slice(2,CompaniesWithTradingData.length-4),
               }),
           };
           callback(null,response);
