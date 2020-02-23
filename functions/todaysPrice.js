@@ -36,20 +36,17 @@ const todaysPrice = (event, context, callback) => {
                         ] = details
                         
                         sn = +sn
-                        noOfTransactions = +noOfTransactions
                         maxPrice = +maxPrice
                         minPrice = +minPrice
                         closingPrice = +closingPrice
-                        tradedShares= +tradedShares
                         Amount = +Amount
-                        prevClosing = +prevClosing,
-                        difference = +difference
+                        prevClosing = +prevClosing
 
-                        let isValidEntry = sn && noOfTransactions && maxPrice
-                        && minPrice && closingPrice && tradedShares
+                        let isValidEntry = sn && maxPrice
+                        && minPrice && closingPrice
                         && Amount && 
                         prevClosing
-                        && difference 
+                         
                         if(isValidEntry){
                           CompaniesWithTradingData.push({ 
                             sn,
@@ -79,7 +76,7 @@ const todaysPrice = (event, context, callback) => {
             },
             body: JSON.stringify(
               {
-                prices: CompaniesWithTradingData.slice(2,CompaniesWithTradingData.length-4),
+                prices: CompaniesWithTradingData,
               }),
           };
           callback(null,response);
