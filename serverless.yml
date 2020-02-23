@@ -28,6 +28,7 @@ provider:
   runtime: nodejs12.x
   stage: dev
   region: us-east-2
+  timeout: 30
 
 # you can add statements to the Lambda function's IAM Role here
 #  iamRoleStatements:
@@ -61,20 +62,16 @@ provider:
 #    - exclude-me-dir/**
 
 functions:
-  hello:
-    handler: handler.hello
-    events:
-      - http:
-          path: message/{name}
-          method: get
   brokers:
     handler: handler.brokers
+    timeout: 30
     events:
       - http:
           path: brokers
           method: get
   todaysPrice:
     handler: handler.todaysPrice
+    timeout: 30
     events:
       - http:
           path: todaysPrice
