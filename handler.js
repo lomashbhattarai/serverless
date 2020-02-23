@@ -31,8 +31,8 @@ module.exports.brokers =  (event, context, callback) => {
                         let details = info.trim().split('\n');
                         details = details.map(detail => detail.trim() )
                         console.log(details)
-                        let [adress,code,telephone,email,website,person] = details  
-                        brokerList.push({ name,adress,code,telephone,email,website,person });
+                        let [address,code,telephone,email,website,person] = details  
+                        brokerList.push({ name,address,code,telephone,email,website,person });
                     })
                     resolve(html)
                 } else {
