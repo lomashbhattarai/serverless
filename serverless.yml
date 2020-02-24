@@ -62,6 +62,8 @@ provider:
 #    - exclude-me-dir/**
 
 functions:
+  hello:
+    handler: handler.hello
   brokers:
     handler: handler.brokers
     timeout: 30

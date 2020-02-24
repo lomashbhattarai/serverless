@@ -1,13 +1,16 @@
+
+
 const hello = (event, context,callback) => {
-  
-    const response =  {
-      statusCode: 200,
-      body: JSON.stringify(
-        {
-          message: `hello ${event.pathParameters.name}`,
-        }),
-    };
-    callback(null,response);
+    
+
+    
+    /* connectorMongodb.then(()=>{
+      brokerModel.findOne({},(err,result) => {
+        callback(null,result);
+        mongoose.connection.close();
+
+      })
+    }) */
   
     // Use this code if you don't use the http event with the LAMBDA-PROXY integration
     // return { message: 'Go Serverless v1.0! Your function executed successfully!', event };

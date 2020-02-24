@@ -1,6 +1,9 @@
-var mongoose = reuire('mongoose');
+var mongoose = require("mongoose");
+var Schema = mongoose.Schema;
 
-var brokerSchema = new mongoose.Schema({
+
+
+var brokerSchema = new Schema({
     name:{
         type: String,
         required:['true','Name field is required']
@@ -27,4 +30,4 @@ var brokerSchema = new mongoose.Schema({
 
 });
 
-module.exports = brokerSchema;
+module.exports = mongoose.model('Broker',brokerSchema);
