@@ -1,5 +1,13 @@
 'use strict';
 
+var mongoose = require("mongoose");
+var connectorMongodb =  mongoose.connect('mongodb://localhost/mynewDB');
+var brokerSchema = require('../api/schemas/broker.js');
+var brokerModel = mongoose.model('broker',brokerSchema,'broker');
+
+
+
+
 const functions = require('./functions/index');
 let { hello, todaysPrice } = functions
 
