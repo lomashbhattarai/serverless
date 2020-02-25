@@ -78,6 +78,13 @@ functions:
       - http:
           path: todaysPrice
           method: get
+  getBrokersFromDb:
+    handler: handler.getBrokersFromDb
+    timeout: 30
+    events:
+      - http:
+          path: getBrokers
+          method: get 
 #      - websocket: $connect
 #      - s3: ${env:BUCKET}
 #      - schedule: rate(10 minutes)

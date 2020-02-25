@@ -1,10 +1,11 @@
 'use strict';
 
 const functions = require('./functions/index');
-let { hello, todaysPrice } = functions
+let { hello, todaysPrice,getBrokersFromDb} = functions
 
 module.exports.hello =  hello;
-module.exports.todaysPrice = todaysPrice
+module.exports.todaysPrice = todaysPrice;
+module.exports.getBrokersFromDb = getBrokersFromDb;
 
 var mongoose = require("mongoose");
 mongoose.connect('mongodb+srv://lambdaUser:QgMRnjF0EzSYhj2h@cluster0-tcgij.mongodb.net/test?retryWrites=true&w=majority',
