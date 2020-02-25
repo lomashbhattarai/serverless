@@ -1,6 +1,8 @@
 var mongoose = require("mongoose");
 mongoose.connect('mongodb+srv://lambdaUser:QgMRnjF0EzSYhj2h@cluster0-tcgij.mongodb.net/test?retryWrites=true&w=majority',
- { useNewUrlParser: true });
+ { useNewUrlParser: true,
+useUnifiedTopology: true,
+});
 var brokerModel = require('../api/schemas/broker.js');
 
 
@@ -17,6 +19,7 @@ const getBrokersFromDb = (event, context,callback) => {
                 brokers: result,
               }),
           };
+          mongoose.connection.close();
           callback(null,response);
     })
     
