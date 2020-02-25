@@ -1,32 +1,31 @@
-var mongoose = require("mongoose");
-mongoose.set('useNewUrlParser', true);
-mongoose.set('useFindAndModify', false);
-mongoose.set('useCreateIndex', true);
-mongoose.set('useUnifiedTopology', true);
-mongoose.connect('mongodb+srv://lambdaUser:QgMRnjF0EzSYhj2h@cluster0-tcgij.mongodb.net/test?retryWrites=true&w=majority');
-var brokerModel = require('../api/schemas/broker.js');
-
-
+const connectToDatabase = require('../db.js');
+const brokerModel = require('../api/schemas/broker.js');
 
 const getBrokersFromDb = (event, context,callback) => {
   context.callbackWaitsForEmptyEventLoop = false;
-  brokerModel.find({}).then((result) => {
-    const response =  {
-      statusCode: 200,
-      headers:{
-        "Access-Control-Allow-Origin": "*" 
-      },
-      body: JSON.stringify(
-        {
-          brokers: result,
+  connectToDatabase().then(() => {
+    brokerModel.find({})
+      .then((result) => {
+      const response =  {
+        statusCode: 200,
+        headers:{
+          "Access-Control-Allow-Origin": "*" 
+        },
+        body: JSON.stringify(
+          {
+            brokers: result,
+          })
+      };
+        callback(null,response);
+      }
+    ).catch(err => 
+        callback(null,{
+          statusCode: err.statusCode || 500,
+          headers:{ 'Content-Type': 'text/plain' },
+          body: 'Could not get brokers'
         })
-    };
-    
-      mongoose.connection.close();
-      callback(null,response);
-    
-    }); 
-    
+      ); 
+  });
 };
 
 module.exports = getBrokersFromDb;

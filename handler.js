@@ -3,6 +3,10 @@
 const functions = require('./functions/index');
 let { hello, todaysPrice,getBrokersFromDb} = functions
 
+const connectToDatabase = require('./db');
+const brokerModel = require('./api/schemas/broker.js');
+
+
 module.exports.hello =  hello;
 module.exports.todaysPrice = todaysPrice;
 module.exports.getBrokersFromDb = getBrokersFromDb;
@@ -10,7 +14,6 @@ module.exports.getBrokersFromDb = getBrokersFromDb;
 var mongoose = require("mongoose");
 mongoose.connect('mongodb+srv://lambdaUser:QgMRnjF0EzSYhj2h@cluster0-tcgij.mongodb.net/test?retryWrites=true&w=majority',
  { useNewUrlParser: true });
-var brokerModel = require('./api/schemas/broker.js');
 
 
 

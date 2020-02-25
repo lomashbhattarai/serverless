@@ -1,9 +1,9 @@
-var mongoose = require("mongoose");
+const mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 
 
 
-var brokerSchema = new Schema({
+const brokerSchema = new Schema({
     name:{
         type: String,
         required:['true','Name field is required']
