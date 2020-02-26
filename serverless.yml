@@ -87,6 +87,14 @@ functions:
       - http:
           path: getBrokers
           method: get
+          cors: true
+  getTodaysPriceFromDb:
+    handler: handler.getTodaysPriceFromDb
+    timeout: 30
+    events:
+      - http:
+          path: getTodaysPrice
+          method: get
           cors: true 
 #      - websocket: $connect
 #      - s3: ${env:BUCKET}

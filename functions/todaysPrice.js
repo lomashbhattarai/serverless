@@ -1,6 +1,9 @@
+const connectToDatabase = require('../db.js');
+const todaysPriceModel = require('../api/schemas/todaysPrice.js');
+
 const todaysPrice = (event, context, callback) => {
     context.callbackWaitsForEmptyEventLoop = false;
-
+    connectToDatabase();
     const request = require('request');
     const cheerio = require('cheerio');
     try {
@@ -17,6 +20,11 @@ const todaysPrice = (event, context, callback) => {
               (error,response,html) =>{
                   if(!error && response.statusCode ==200){
                       const $ = cheerio.load(html);
+                      const todayText = $('#date').text().trim()
+                      const todayArray = todayText.split(/\s+/) 
+                      const day = todayArray[2];
+                      const time = todayArray[3];
+                      const today= day + '-' + time;
                       const companies = $('#home-contents .table tr')
                         companies.each((i,el) =>{  
                         const info = $(el).text();
@@ -25,13 +33,13 @@ const todaysPrice = (event, context, callback) => {
                         let [
                             sn,
                             name,
-                            noOfTransactions,
+                            transactionCount,
                             maxPrice,
                             minPrice,
                             closingPrice,
                             tradedShares,
-                            Amount,
-                            prevClosing,
+                            amount,
+                            prevClosingPrice,
                             difference
                         ] = details
                         
@@ -39,26 +47,29 @@ const todaysPrice = (event, context, callback) => {
                         maxPrice = +maxPrice
                         minPrice = +minPrice
                         closingPrice = +closingPrice
-                        Amount = +Amount
-                        prevClosing = +prevClosing
+                        amount = +amount
+                        prevClosingPrice = +prevClosingPrice
 
                         let isValidEntry = sn && maxPrice
                         && minPrice && closingPrice
-                        && Amount && 
-                        prevClosing
+                        && amount && 
+                        prevClosingPrice
                          
                         if(isValidEntry){
+                          name = name.trim()
                           CompaniesWithTradingData.push({ 
                             sn,
                             name,
-                            noOfTransactions,
+                            transactionCount,
                             maxPrice,
                             minPrice,
                             closingPrice,
                             tradedShares,
-                            Amount,
-                            prevClosing,
-                            difference });    
+                            amount,
+                            prevClosingPrice,
+                            difference,
+                            today
+                           });    
                         }
                       })
                       resolve(html)
@@ -69,6 +80,19 @@ const todaysPrice = (event, context, callback) => {
               })
           })
           await Promise.all(promises)
+          const tradingPromise = CompaniesWithTradingData.map((tradinginfo) => {
+            return new Promise((resolve,reject) =>{
+              let query = { name: tradinginfo.name };
+              let update = tradinginfo;
+              let options = {upsert: true, new: true, setDefaultsOnInsert: true};
+              todaysPriceModel.findOneAndUpdate(query, update, options).then((data)=>{
+                resolve(data)
+              }). catch(()=>{
+                reject(err)
+              })
+            })
+          })
+          await Promise.all(tradingPromise)
           const response =  {
             statusCode: 200,
             headers:{
@@ -76,6 +100,7 @@ const todaysPrice = (event, context, callback) => {
             },
             body: JSON.stringify(
               {
+                status:"success",
                 prices: CompaniesWithTradingData,
               }),
           };
