@@ -76,7 +76,7 @@ functions:
     handler: handler.todaysPrice
     timeout: 30
     events:
-      - schedule: cron(0/1 10-12 ? * MON-FRI *)
+      - schedule: cron(0/30 12-15 ? * MON-FRI *)
       - http:
           path: todaysPrice
           method: get
