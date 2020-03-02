@@ -81,6 +81,15 @@ functions:
           path: todaysPrice
           method: get
           cors: true
+  todaysPriceHistory:
+    handler: handler.todaysPriceHistory
+    timeout: 30
+    events:
+      - schedule: cron(0/30 12-15 ? * SUN-FRI *)
+      - http:
+          path: todaysPriceHistory
+          method: get
+          cors: true
   getBrokersFromDb:
     handler: handler.getBrokersFromDb
     timeout: 30

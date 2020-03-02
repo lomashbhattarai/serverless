@@ -1,5 +1,6 @@
 const hello = require('./hello');
 const todaysPrice = require('./todaysPrice');
+const todaysPriceHistory = require('./todaysPriceHistory');
 const getBrokersFromDb = require('./getBrokersFromDb');
 const brokers = require('./brokers');
 const getTodaysPriceFromDb = require('./getTodaysPriceFromDb');
@@ -10,5 +11,6 @@ module.exports = {
     todaysPrice,
     getBrokersFromDb,
     brokers,
-    getTodaysPriceFromDb
+    getTodaysPriceFromDb,
+    todaysPriceHistory
 }
