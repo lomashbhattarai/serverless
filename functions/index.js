@@ -5,7 +5,7 @@ const getBrokersFromDb = require('./getBrokersFromDb');
 const brokers = require('./brokers');
 const getTodaysPriceFromDb = require('./getTodaysPriceFromDb');
 const companies = require('./companies')
-
+const updateExistingData = require('./updateExistingData')
 
 module.exports = {
     hello,
@@ -14,5 +14,6 @@ module.exports = {
     brokers,
     getTodaysPriceFromDb,
     todaysPriceHistory,
-    companies
+    companies,
+    updateExistingData
 }

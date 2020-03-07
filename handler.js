@@ -8,7 +8,8 @@ let {
     brokers,
     getTodaysPriceFromDb,
     todaysPriceHistory,
-    companies
+    companies,
+    updateExistingData
   } = functions
 
 module.exports.hello =  hello;
@@ -18,5 +19,6 @@ module.exports.brokers = brokers;
 module.exports.getTodaysPriceFromDb = getTodaysPriceFromDb
 module.exports.todaysPriceHistory = todaysPriceHistory;
 module.exports.companies = companies;
+module.exports.updateExistingData = updateExistingData;
 
 

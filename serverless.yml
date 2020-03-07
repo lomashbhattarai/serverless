@@ -72,6 +72,14 @@ functions:
           path: brokers
           method: get
           cors: true
+#  updateExistingData:
+#    handler: handler.updateExistingData
+#    timeout: 30
+#    events:
+#      - http:
+#          path: updateData
+#          method: get
+#          cors: true
   companies:
     handler: handler.companies
     timeout: 30
