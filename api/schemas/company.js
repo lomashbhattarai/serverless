@@ -13,7 +13,7 @@ const companySchema = new Schema({
     sector:{
         type: String,
     }
-});
+},{ timestamps: true});
 
 
 module.exports = mongoose.model('Company',companySchema);

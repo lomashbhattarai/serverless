@@ -1,5 +1,7 @@
 const connectToDatabase = require('../db.js');
 const todaysPriceHistoryModel = require('../api/schemas/todaysPriceHistory.js');
+const companiesModel = require('../api/schemas/company.js')
+
 
 const todaysPriceHistory = (event, context, callback) => {
     context.callbackWaitsForEmptyEventLoop = false;
@@ -89,13 +91,24 @@ const todaysPriceHistory = (event, context, callback) => {
           const tradingPromise = CompaniesWithTradingData.map((tradinginfo) => {
             return new Promise((resolve,reject) =>{
               let query = { name: tradinginfo.name, today: tradinginfo.today };
-              let update = tradinginfo;
-              let options = {upsert: true, new: true, setDefaultsOnInsert: true};
-              todaysPriceHistoryModel.findOneAndUpdate(query, update, options).then((data)=>{
-                resolve(data)
-              }). catch(()=>{
-                reject(err)
-              })
+              companiesModel.findOne({name: tradinginfo.name },
+                (err,requiredCompany)=>{
+                  if(err){
+                    reject(err)
+                    return
+                  } else {
+                    let update = {...tradinginfo, symbol: requiredCompany ? requiredCompany.symbol: ''};
+                    let options = {upsert: true, new: true, setDefaultsOnInsert: true};
+
+                    todaysPriceHistoryModel.findOneAndUpdate(query, update, options).then((data)=>{
+                      resolve(data)
+                    }). catch(()=>{
+                      reject(err)
+                    })
+
+                  }
+
+                })
             })
           })
           await Promise.all(tradingPromise)

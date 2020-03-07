@@ -7,6 +7,9 @@ const todaysPriceSchema = new Schema({
         type: String,
         required:['true','Name field is required']
     },
+    symbol:{
+        type: String,
+    },
     maxPrice:{
       type: Number  
     },
@@ -34,6 +37,6 @@ const todaysPriceSchema = new Schema({
     today:{
         type: String
     }
-});
+},{ timestamps: true});
 
 module.exports = mongoose.model('TodaysPrice',todaysPriceSchema);
