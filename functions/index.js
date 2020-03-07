@@ -4,8 +4,9 @@ const todaysPriceHistory = require('./todaysPriceHistory');
 const getBrokersFromDb = require('./getBrokersFromDb');
 const brokers = require('./brokers');
 const getTodaysPriceFromDb = require('./getTodaysPriceFromDb');
-const companies = require('./companies')
-const updateExistingData = require('./updateExistingData')
+const companies = require('./companies');
+const updateExistingData = require('./updateExistingData');
+const getHistoryBySymbol = require('./getHistoryBySymbol');
 
 module.exports = {
     hello,
@@ -15,5 +16,6 @@ module.exports = {
     getTodaysPriceFromDb,
     todaysPriceHistory,
     companies,
-    updateExistingData
+    updateExistingData,
+    getHistoryBySymbol
 }

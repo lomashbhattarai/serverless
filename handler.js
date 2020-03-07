@@ -9,7 +9,8 @@ let {
     getTodaysPriceFromDb,
     todaysPriceHistory,
     companies,
-    updateExistingData
+    updateExistingData,
+    getHistoryBySymbol
   } = functions
 
 module.exports.hello =  hello;
@@ -20,5 +21,7 @@ module.exports.getTodaysPriceFromDb = getTodaysPriceFromDb
 module.exports.todaysPriceHistory = todaysPriceHistory;
 module.exports.companies = companies;
 module.exports.updateExistingData = updateExistingData;
+module.exports.getHistoryBySymbol = getHistoryBySymbol;
+
 
 
