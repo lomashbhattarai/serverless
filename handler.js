@@ -7,11 +7,9 @@ let {
     getBrokersFromDb,
     brokers,
     getTodaysPriceFromDb,
-    todaysPriceHistory
+    todaysPriceHistory,
+    companies
   } = functions
-
-const connectToDatabase = require('./db');
-const brokerModel = require('./api/schemas/broker.js');
 
 module.exports.hello =  hello;
 module.exports.todaysPrice = todaysPrice;
@@ -19,5 +17,6 @@ module.exports.getBrokersFromDb = getBrokersFromDb;
 module.exports.brokers = brokers;
 module.exports.getTodaysPriceFromDb = getTodaysPriceFromDb
 module.exports.todaysPriceHistory = todaysPriceHistory;
+module.exports.companies = companies;
 
 
