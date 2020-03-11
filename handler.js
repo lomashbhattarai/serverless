@@ -10,7 +10,8 @@ let {
     todaysPriceHistory,
     companies,
     updateExistingData,
-    getHistoryBySymbol
+    getHistoryBySymbol,
+    deleteUnwantedData
   } = functions
 
 module.exports.hello =  hello;
@@ -22,6 +23,7 @@ module.exports.todaysPriceHistory = todaysPriceHistory;
 module.exports.companies = companies;
 module.exports.updateExistingData = updateExistingData;
 module.exports.getHistoryBySymbol = getHistoryBySymbol;
+module.exports.deleteUnwantedData = deleteUnwantedData;
 
 
 

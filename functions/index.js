@@ -7,6 +7,7 @@ const getTodaysPriceFromDb = require('./getTodaysPriceFromDb');
 const companies = require('./companies');
 const updateExistingData = require('./updateExistingData');
 const getHistoryBySymbol = require('./getHistoryBySymbol');
+const deleteUnwantedData = require('./deleteUnwantedData');
 
 module.exports = {
     hello,
@@ -17,5 +18,6 @@ module.exports = {
     todaysPriceHistory,
     companies,
     updateExistingData,
-    getHistoryBySymbol
+    getHistoryBySymbol,
+    deleteUnwantedData
 }
