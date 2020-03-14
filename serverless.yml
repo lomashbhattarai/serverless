@@ -123,13 +123,21 @@ functions:
           method: get
           cors: true
   getHistoryBySymbol:
-      handler: handler.getHistoryBySymbol
-      timeout: 30
-      events:
-        - http:
-            path: getHistoryBySymbol/{symbol}
-            method: get
-            cors: true
+    handler: handler.getHistoryBySymbol
+    timeout: 30
+    events:
+      - http:
+          path: getHistoryBySymbol/{symbol}
+          method: get
+          cors: true
+  getCompanyFromDb:
+    handler: handler.getCompanyFromDb
+    timeout: 30
+    events:
+      - http:
+          path: getCompanyFromDb
+          method: get
+          cors: true
 #      - websocket: $connect
 #      - s3: ${env:BUCKET}
 #      - schedule: rate(10 minutes)

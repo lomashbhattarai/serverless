@@ -8,6 +8,8 @@ const companies = require('./companies');
 const updateExistingData = require('./updateExistingData');
 const getHistoryBySymbol = require('./getHistoryBySymbol');
 const deleteUnwantedData = require('./deleteUnwantedData');
+const getCompanyFromDb = require('./getCompaniesFromDb');
+
 
 module.exports = {
     hello,
@@ -19,5 +21,6 @@ module.exports = {
     companies,
     updateExistingData,
     getHistoryBySymbol,
-    deleteUnwantedData
+    deleteUnwantedData,
+    getCompanyFromDb
 }

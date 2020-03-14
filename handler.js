@@ -11,7 +11,8 @@ let {
     companies,
     updateExistingData,
     getHistoryBySymbol,
-    deleteUnwantedData
+    deleteUnwantedData,
+    getCompanyFromDb
   } = functions
 
 module.exports.hello =  hello;
@@ -24,6 +25,7 @@ module.exports.companies = companies;
 module.exports.updateExistingData = updateExistingData;
 module.exports.getHistoryBySymbol = getHistoryBySymbol;
 module.exports.deleteUnwantedData = deleteUnwantedData;
+module.exports.getCompanyFromDb = getCompanyFromDb;
 
 
 
