@@ -1,5 +1,9 @@
 # serverless
 
+sudo npm install -g serverless
+npm install
+npm run offline
+
 Endpoints:
 
 GET a list of brokers from Database:
