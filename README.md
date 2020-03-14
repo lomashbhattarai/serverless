@@ -34,3 +34,6 @@ https://g1y4zxy8vf.execute-api.us-east-2.amazonaws.com/dev/companies
 
 GET price history of a particular company by Symbol
 https://g1y4zxy8vf.execute-api.us-east-2.amazonaws.com/dev/getHistoryBySymbol/{symbol}
+
+GET companies from Database:
+https://g1y4zxy8vf.execute-api.us-east-2.amazonaws.com/dev/getCompanyFromDb
