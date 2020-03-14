@@ -1,5 +1,16 @@
 # serverless
 
+
+- sudo apt install awscli
+
+- aws configure
+
+- sudo npm install -g serverless
+
+- npm install
+
+- npm run offline
+
 Endpoints:
 
 GET a list of brokers from Database:
@@ -23,3 +34,6 @@ https://g1y4zxy8vf.execute-api.us-east-2.amazonaws.com/dev/companies
 
 GET price history of a particular company by Symbol
 https://g1y4zxy8vf.execute-api.us-east-2.amazonaws.com/dev/getHistoryBySymbol/{symbol}
+
+GET companies from Database:
+https://g1y4zxy8vf.execute-api.us-east-2.amazonaws.com/dev/getCompanyFromDb
