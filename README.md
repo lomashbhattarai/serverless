@@ -1,10 +1,15 @@
 # serverless
 
-sudo npm install -g serverless
 
-npm install
+- sudo apt install awscli
 
-npm run offline
+- aws configure
+
+- sudo npm install -g serverless
+
+- npm install
+
+- npm run offline
 
 Endpoints:
 
